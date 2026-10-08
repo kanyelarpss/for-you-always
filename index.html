@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f8cde2">
+<title>For You, Always ♡</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Parisienne&display=swap');
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+margin:0;min-height:100vh;overflow-x:hidden;color:#66465f;
+font-family:"Cormorant Garamond",Georgia,serif;
+background:
+radial-gradient(circle at 8% 8%,rgba(255,255,255,.95),transparent 25%),
+radial-gradient(circle at 92% 20%,rgba(255,194,221,.7),transparent 30%),
+radial-gradient(circle at 15% 90%,rgba(215,188,255,.6),transparent 35%),
+linear-gradient(135deg,#ffe8f2,#f7eaff 47%,#e9e0ff);
+}
+body:before{
+content:"";position:fixed;inset:0;pointer-events:none;opacity:.22;
+background-image:radial-gradient(#fff 1px,transparent 1px);
+background-size:24px 24px;z-index:0
+}
+
+.ambient{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+.glow{position:absolute;width:320px;height:320px;border-radius:50%;
+filter:blur(65px);opacity:.35;animation:drift 12s ease-in-out infinite alternate}
+.one{background:#ffc7df;left:-130px;top:12%}
+.two{background:#c9a8f7;right:-150px;top:45%;animation-delay:-4s}
+.three{background:#ffe2ef;left:30%;bottom:-170px;animation-delay:-7s}
+@keyframes drift{
+from{transform:translate(0,0) scale(1)}
+to{transform:translate(35px,-25px) scale(1.08)}
+}
+
+.petals{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:8}
+.petal{
+position:absolute;top:-10vh;width:14px;height:21px;
+border-radius:80% 20% 80% 20%;
+background:linear-gradient(145deg,#ffc8df,#cfa9ee);
+opacity:.72;animation:fall linear infinite
+}
+.petal:nth-child(1){left:5%;animation-duration:11s;animation-delay:-2s}
+.petal:nth-child(2){left:18%;animation-duration:14s;animation-delay:-8s}
+.petal:nth-child(3){left:33%;animation-duration:10s;animation-delay:-4s}
+.petal:nth-child(4){left:49%;animation-duration:13s;animation-delay:-10s}
+.petal:nth-child(5){left:64%;animation-duration:15s;animation-delay:-5s}
+.petal:nth-child(6){left:79%;animation-duration:11s;animation-delay:-1s}
+.petal:nth-child(7){left:93%;animation-duration:16s;animation-delay:-12s}
+@keyframes fall{
+0%{transform:translateY(-15vh) translateX(0) rotate(0);opacity:0}
+15%{opacity:.8}
+100%{transform:translateY(120vh) translateX(100px) rotate(480deg);opacity:0}
+}
+
+.flower{
+position:absolute;width:100px;height:100px;
+animation:sway 5s ease-in-out infinite;
+filter:drop-shadow(0 10px 14px rgba(118,72,112,.13));
+pointer-events:none
+}
+.flower:before,.flower:after,.flower i:before,.flower i:after{
+content:"";position:absolute;width:39px;height:59px;left:31px;top:20px;
+border-radius:55% 55% 45% 45%;
+background:linear-gradient(145deg,#ffd2e5,#d7b4f1);
+transform-origin:50% 83%
+}
+.flower:before{transform:rotate(0)}
+.flower:after{transform:rotate(72deg)}
+.flower i:before{transform:rotate(144deg)}
+.flower i:after{transform:rotate(216deg)}
+.flower i{display:block;position:absolute;inset:0}
+.flower span{
+position:absolute;width:22px;height:22px;left:39px;top:40px;border-radius:50%;
+background:#ffe7a8;z-index:4;box-shadow:0 0 0 5px rgba(255,255,255,.22)
+}
+@keyframes sway{50%{transform:translateY(-10px) rotate(4deg)}}
+.f1{left:-20px;top:8%}
+.f2{right:-12px;top:17%;animation-delay:-1.7s}
+.f3{left:-16px;bottom:12%;transform:scale(.78);animation-delay:-3s}
+.f4{right:-18px;bottom:7%;transform:scale(.68);animation-delay:-4s}
+
+.hero{
+min-height:100svh;display:flex;align-items:center;justify-content:center;
+padding:34px 18px 70px;position:relative;z-index:3
+}
+.card{
+width:min(820px,94vw);padding:48px 38px;border-radius:36px;
+border:1px solid rgba(255,255,255,.82);
+background:rgba(255,249,253,.68);
+backdrop-filter:blur(18px);
+box-shadow:0 30px 80px rgba(117,65,112,.17),inset 0 1px 0 rgba(255,255,255,.9);
+text-align:center
+}
+.small-title{
+margin:0;color:#a66a9b;font-size:12px;letter-spacing:4px;text-transform:uppercase
+}
+h1{
+margin:14px 0 9px;font-family:Parisienne,cursive;
+font-size:clamp(64px,12vw,108px);font-weight:400;line-height:.95;color:#98598e
+}
+.intro{
+margin:0 auto;max-width:530px;font-size:20px;line-height:1.45;color:#805b78
+}
+.open-button{
+margin-top:30px;border:0;border-radius:999px;padding:14px 29px;color:white;
+background:linear-gradient(135deg,#df91bd,#aa86da);
+box-shadow:0 12px 28px rgba(163,90,150,.25);
+font:600 18px "Cormorant Garamond",serif;cursor:pointer;
+transition:transform .25s,box-shadow .25s
+}
+.open-button:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(163,90,150,.3)}
+
+.letter-section{display:none;margin-top:32px;text-align:left;animation:rise .8s ease both}
+.letter-section.opened{display:block}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+
+.letter{
+position:relative;overflow:hidden;padding:46px clamp(22px,6vw,60px);
+border-radius:28px;
+background:
+linear-gradient(rgba(255,255,255,.79),rgba(255,255,255,.79)),
+radial-gradient(circle at 10% 15%,#ffe6f2,transparent 25%),
+radial-gradient(circle at 90% 85%,#eadbff,transparent 28%);
+box-shadow:0 16px 40px rgba(119,72,114,.12)
+}
+.letter:before{
+content:"♡";position:absolute;left:20px;top:13px;
+color:#e0a4c7;font-size:28px;opacity:.8
+}
+.letter:after{
+content:"✿";position:absolute;right:18px;bottom:9px;
+color:#c5a2e6;font-size:32px;opacity:.85
+}
+.letter p{
+margin:0 0 21px;font-size:20px;line-height:1.72
+}
+.greeting{
+font-family:Parisienne,cursive;font-size:43px!important;
+line-height:1.1!important;color:#a05b91;margin-bottom:28px!important
+}
+.closing{margin-top:32px!important}
+.signature{
+margin-top:12px;text-align:right;font-family:Parisienne,cursive;
+font-size:38px;color:#9b5a91
+}
+.music{
+position:sticky;bottom:16px;margin:25px auto 0;width:max-content;max-width:100%;
+display:flex;align-items:center;gap:10px;padding:9px 13px 9px 9px;
+border:1px solid rgba(198,148,190,.45);border-radius:999px;
+background:rgba(255,247,252,.9);backdrop-filter:blur(12px);
+box-shadow:0 10px 24px rgba(118,73,112,.12)
+}
+.music-button{
+width:42px;height:42px;border:0;border-radius:50%;color:#fff;
+background:linear-gradient(135deg,#d98bb8,#a888d8);
+font-size:17px;cursor:pointer
+}
+.music-label{padding-right:6px;color:#8e6387;font-size:16px}
+.footer{margin-top:25px;color:#a17899;font-size:13px;text-align:center}
+
+@media(max-width:600px){
+.card{padding:40px 18px}
+.letter{padding:42px 21px}
+.letter p{font-size:18px;line-height:1.66}
+.greeting{font-size:37px!important}
+.flower{transform:scale(.65)}
+.f1{left:-28px}.f2{right:-35px}
+}
+</style>
+</head>
+
+<body>
+<div class="ambient">
+<div class="glow one"></div>
+<div class="glow two"></div>
+<div class="glow three"></div>
+</div>
+
+<div class="petals">
+<span class="petal"></span><span class="petal"></span><span class="petal"></span>
+<span class="petal"></span><span class="petal"></span><span class="petal"></span><span class="petal"></span>
+</div>
+
+<section class="hero">
+<div class="flower f1"><i></i><span></span></div>
+<div class="flower f2"><i></i><span></span></div>
+<div class="flower f3"><i></i><span></span></div>
+<div class="flower f4"><i></i><span></span></div>
+
+<main class="card">
+<p class="small-title">A little place made for you</p>
+<h1>For You, Always</h1>
+<p class="intro">
+I wanted to give you something more than a message.
+So I made you a little corner of the internet.
+</p>
+
+<button class="open-button" id="openButton">Open my letter ♡</button>
+
+<section class="letter-section" id="letterSection">
+<article class="letter">
+
+<p class="greeting">My dearest love,</p>
+
+<p>
+I can say with confidence that you are one of the biggest surprises I received this year.
+I never expected to meet someone like you. At the start of the year, I honestly thought I was
+going to be the type of guy who would only focus on studying, reaching my goals, and getting
+through everything on my own.
+</p>
+
+<p>Then you came into my life.</p>
+
+<p>
+You changed something in me without even trying. I started looking forward to talking to someone,
+sharing little things about my day, and having someone who I genuinely cared about. I never planned
+for any of this, but somehow, meeting you became one of the best things that happened to me this year.
+</p>
+
+<p>
+You became someone I didn't know I was looking for. Someone I want to understand, support, and keep
+choosing even when things aren't perfect.
+</p>
+
+<p>And honestly, I'm grateful I met you.</p>
+
+<p>
+You are one of the most supportive people I have ever known. And I don't think I’ve told you enough
+how much that means to me.
+</p>
+
+<p>
+There are times when I read your messages and find myself smiling without even realizing it.
+Sometimes, a few words from you are enough to make a difficult day feel a little lighter.
+You encourage me in ways you probably don't even notice, and you remind me that there is still
+so much kindness and joy in people.
+</p>
+
+<p>
+I’m grateful for every time you listened to me, every time you encouraged me, every time you checked
+on me, and even the small conversations that might not have meant much to you but stayed with me.
+Those little moments have become things I genuinely treasure.
+</p>
+
+<p>
+I hope you know that your kindness doesn't disappear after you give it to someone.
+It stays with them. It stayed with me.
+</p>
+
+<p>
+I could honestly spend the whole day telling you everything I admire about you, but I'll save some of
+those words for another time. I think I'd rather have more moments with you first, so I have more things
+to be grateful for and more stories to tell you later.
+</p>
+
+<p>
+For now, I simply want you to know this: I'm genuinely thankful that I met you. Out of all the people
+I could have met this year, somehow I met you. And I don't take that for granted.
+</p>
+
+<p>
+I don't simply love you. I appreciate you, I care about you, I admire you, and I value every moment
+I get to spend with you. I love the person you are, the way you treat people, the way you support me,
+and the little things you do without realizing how much they mean to me.
+</p>
+
+<p>
+I don't want my love for you to only be something I say. I want you to feel it in the way I listen to you,
+support you, remember the little things about you, and stay beside you through the good days and the
+difficult ones.
+</p>
+
+<p class="closing">
+I love you, but more than that, I am grateful for you. And I hope I never stop giving you reasons
+to feel the same gratitude for having me in your life.
+</p>
+
+<div class="signature">With all my love ♡</div>
+</article>
+
+<div class="music">
+<button class="music-button" id="musicButton">♫</button>
+<span class="music-label" id="musicLabel">A song for you</span>
+</div>
+</section>
+
+<p class="footer">Made especially for one special person ♡</p>
+</main>
+</section>
+
+<video id="soundtrack" preload="auto" playsinline
+style="position:fixed;width:1px;height:1px;opacity:0;pointer-events:none">
+<source src="soundtrack.mp4" type="video/mp4">
+</video>
+
+<script>
+const openButton=document.getElementById("openButton");
+const letterSection=document.getElementById("letterSection");
+const musicButton=document.getElementById("musicButton");
+const musicLabel=document.getElementById("musicLabel");
+const soundtrack=document.getElementById("soundtrack");
+
+openButton.onclick=async()=>{
+letterSection.classList.add("opened");
+openButton.style.display="none";
+try{
+await soundtrack.play();
+musicButton.textContent="❚❚";
+musicLabel.textContent="Music playing";
+}catch{
+musicLabel.textContent="Tap ♫ to play the song";
+}
+setTimeout(()=>letterSection.scrollIntoView({behavior:"smooth"}),180);
+};
+
+musicButton.onclick=async()=>{
+if(soundtrack.paused){
+try{
+await soundtrack.play();
+musicButton.textContent="❚❚";
+musicLabel.textContent="Music playing";
+}catch{
+musicLabel.textContent="The soundtrack could not be played";
+}
+}else{
+soundtrack.pause();
+musicButton.textContent="♫";
+musicLabel.textContent="Music paused";
+}
+};
+</script>
+</body>
+  </html>
